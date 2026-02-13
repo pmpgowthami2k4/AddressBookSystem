@@ -162,6 +162,17 @@ namespace AddressBookSystem
             }
         }
 
+        public void SortByName()
+        {
+            contacts.Sort();
+
+            foreach (var contact in contacts)
+            {
+                Console.WriteLine(contact);
+            }
+        }
+
+
 
 
 

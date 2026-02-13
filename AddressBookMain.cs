@@ -81,7 +81,8 @@ namespace AddressBookSystem
                 Console.WriteLine("6. View Contacts by State");
                 Console.WriteLine("7. Count Contacts by City");
                 Console.WriteLine("8. Count Contacts by State");
-                Console.WriteLine("9. Back");
+                Console.WriteLine("9. Sort Contacts by Name");
+                Console.WriteLine("10. Back");
                 Console.Write("Enter your choice: ");
 
                 string choice = Console.ReadLine();
@@ -127,6 +128,10 @@ namespace AddressBookSystem
                         break;
 
                     case "9":
+                        addressBook.SortByName();
+                        break;
+
+                    case "10":
                         return;
 
                     default:
@@ -135,6 +140,7 @@ namespace AddressBookSystem
                 }
             }
         }
+
 
 
         private static void AddContactFlow(AddressBook addressBook)

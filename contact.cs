@@ -2,7 +2,9 @@
 
 namespace AddressBookSystem
 {
-    internal class Contact
+
+    internal class Contact : IComparable<Contact>
+
     {
         public string FirstName { get; }
         public string LastName { get; }
@@ -68,6 +70,19 @@ namespace AddressBookSystem
                 LastName.ToLower()
             );
         }
+        public int CompareTo(Contact other)
+        {
+            if (other == null)
+                return 1;
+
+            int firstNameComparison = FirstName.CompareTo(other.FirstName);
+
+            if (firstNameComparison != 0)
+                return firstNameComparison;
+
+            return LastName.CompareTo(other.LastName);
+        }
+
 
     }
 }
