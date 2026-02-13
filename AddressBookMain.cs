@@ -8,16 +8,14 @@ namespace AddressBookSystem
         {
             Console.WriteLine("Welcome to Address Book Program");
 
-            AddressBook addressBook = new AddressBook();
+            Dictionary<string, AddressBook> addressBooks = new Dictionary<string, AddressBook>();
 
             while (true)
             {
-                Console.WriteLine("\n===== MENU =====");
-                Console.WriteLine("1. Add Contact");
-                Console.WriteLine("2. Edit Contact");
-                Console.WriteLine("3. Delete Contact");
-                Console.WriteLine("4. Display All Contacts");
-                Console.WriteLine("5. Exit");
+                Console.WriteLine("\n===== ADDRESS BOOK MENU =====");
+                Console.WriteLine("1. Create New Address Book");
+                Console.WriteLine("2. Select Address Book");
+                Console.WriteLine("3. Exit");
                 Console.Write("Enter your choice: ");
 
                 string choice = Console.ReadLine();
@@ -25,24 +23,35 @@ namespace AddressBookSystem
                 switch (choice)
                 {
                     case "1":
-                        AddContactFlow(addressBook);
+                        Console.Write("Enter Address Book Name: ");
+                        string name = Console.ReadLine();
+
+                        if (!addressBooks.ContainsKey(name))
+                        {
+                            addressBooks[name] = new AddressBook();
+                            Console.WriteLine("Address Book created successfully.");
+                        }
+                        else
+                        {
+                            Console.WriteLine("Address Book already exists.");
+                        }
                         break;
 
                     case "2":
-                        Console.Write("Enter first name to edit: ");
-                        addressBook.EditContact(Console.ReadLine());
+                        Console.Write("Enter Address Book Name: ");
+                        string selectedName = Console.ReadLine();
+
+                        if (addressBooks.ContainsKey(selectedName))
+                        {
+                            ManageAddressBook(addressBooks[selectedName]);
+                        }
+                        else
+                        {
+                            Console.WriteLine("Address Book not found.");
+                        }
                         break;
 
                     case "3":
-                        Console.Write("Enter first name to delete: ");
-                        addressBook.DeleteContact(Console.ReadLine());
-                        break;
-
-                    case "4":
-                        addressBook.DisplayAllContacts();
-                        break;
-
-                    case "5":
                         return;
 
                     default:
@@ -51,6 +60,7 @@ namespace AddressBookSystem
                 }
             }
         }
+
 
         private static void AddContactFlow(AddressBook addressBook)
         {
@@ -93,6 +103,51 @@ namespace AddressBookSystem
 
             addressBook.AddContact(contact);
         }
+
+        private static void ManageAddressBook(AddressBook addressBook)
+        {
+            while (true)
+            {
+                Console.WriteLine("\n===== CONTACT MENU =====");
+                Console.WriteLine("1. Add Contact");
+                Console.WriteLine("2. Edit Contact");
+                Console.WriteLine("3. Delete Contact");
+                Console.WriteLine("4. Display All Contacts");
+                Console.WriteLine("5. Back");
+                Console.Write("Enter your choice: ");
+
+                string choice = Console.ReadLine();
+
+                switch (choice)
+                {
+                    case "1":
+                        AddContactFlow(addressBook);
+                        break;
+
+                    case "2":
+                        Console.Write("Enter first name to edit: ");
+                        addressBook.EditContact(Console.ReadLine());
+                        break;
+
+                    case "3":
+                        Console.Write("Enter first name to delete: ");
+                        addressBook.DeleteContact(Console.ReadLine());
+                        break;
+
+                    case "4":
+                        addressBook.DisplayAllContacts();
+                        break;
+
+                    case "5":
+                        return;
+
+                    default:
+                        Console.WriteLine("Invalid choice.");
+                        break;
+                }
+            }
+        }
+
 
 
     }
