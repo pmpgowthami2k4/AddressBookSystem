@@ -51,6 +51,15 @@ namespace AddressBookSystem
 
             Console.WriteLine("\nAll Contacts:");
             addressBook.DisplayAllContacts();
+
+            Console.Write("\nEnter first name to edit: ");
+            string nameToEdit = Console.ReadLine();
+
+            addressBook.EditContact(nameToEdit);
+
+            Console.WriteLine("\nUpdated Contact List:");
+            addressBook.DisplayAllContacts();
+
         }
     }
 }

@@ -6,12 +6,20 @@ namespace AddressBookSystem
     {
         public string FirstName { get; }
         public string LastName { get; }
-        public string Address { get; }
-        public string City { get; }
-        public string State { get; }
-        public string Zip { get; }
-        public string PhoneNumber { get; }
-        public string Email { get; }
+        public string Address { get; private set; }
+        public string City { get; private set; }
+        public string State { get; private set; }
+        public string Zip { get; private set; }
+        public string PhoneNumber { get; private set; }
+        public string Email { get; private set; }
+        public void UpdateAddress(string address) => Address = address;
+        public void UpdateCity(string city) => City = city;
+        public void UpdateState(string state) => State = state;
+        public void UpdateZip(string zip) => Zip = zip;
+        public void UpdatePhone(string phone) => PhoneNumber = phone;
+        public void UpdateEmail(string email) => Email = email;
+
+
 
         public Contact(string firstName,
                        string lastName,

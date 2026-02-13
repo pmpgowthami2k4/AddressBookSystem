@@ -32,5 +32,39 @@ namespace AddressBookSystem
                 Console.WriteLine(contact);
             }
         }
+
+        public void EditContact(string firstName)
+        {
+            Contact contact = contacts.Find(c => c.FirstName.Equals(firstName, StringComparison.OrdinalIgnoreCase));
+
+            if (contact == null)
+            {
+                Console.WriteLine("Contact not found.");
+                return;
+            }
+
+            Console.WriteLine("Enter new details:");
+
+            Console.Write("Address: ");
+            contact.UpdateAddress(Console.ReadLine());
+
+            Console.Write("City: ");
+            contact.UpdateCity(Console.ReadLine());
+
+            Console.Write("State: ");
+            contact.UpdateState(Console.ReadLine());
+
+            Console.Write("Zip: ");
+            contact.UpdateZip(Console.ReadLine());
+
+            Console.Write("Phone Number: ");
+            contact.UpdatePhone(Console.ReadLine());
+
+            Console.Write("Email: ");
+            contact.UpdateEmail(Console.ReadLine());
+
+            Console.WriteLine("Contact updated successfully.");
+        }
+
     }
 }
