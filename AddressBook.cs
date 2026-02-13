@@ -1,26 +1,36 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace AddressBookSystem
 {
-    internal class AddressBookMain
+    internal class AddressBook
     {
-        static void Main(string[] args)
+        private List<Contact> contacts;
+
+        public AddressBook()
         {
-            Console.WriteLine("Welcome to Address Book Program");
+            contacts = new List<Contact>();
+        }
 
-            Contact contact = new Contact(
-                "Gowthami",
-                "Payasam",
-                "123 Main Street",
-                "Hyderabad",
-                "Telangana",
-                "500001",
-                "9876543210",
-                "gowthami@email.com"
-            );
+        public void AddContact(Contact contact)
+        {
+            contacts.Add(contact);
+            Console.WriteLine("Contact added successfully.");
+        }
 
-            Console.WriteLine("\nContact Created Successfully:\n");
-            Console.WriteLine(contact);
+        public void DisplayAllContacts()
+        {
+            if (contacts.Count == 0)
+            {
+                Console.WriteLine("No contacts found.");
+                return;
+            }
+
+            foreach (Contact contact in contacts)
+            {
+                Console.WriteLine("\n----------------------");
+                Console.WriteLine(contact);
+            }
         }
     }
 }
