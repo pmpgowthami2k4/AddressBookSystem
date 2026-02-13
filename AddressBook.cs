@@ -66,5 +66,21 @@ namespace AddressBookSystem
             Console.WriteLine("Contact updated successfully.");
         }
 
+        public void DeleteContact(string firstName)
+        {
+            Contact contact = contacts.Find(c =>
+                c.FirstName.Equals(firstName, StringComparison.OrdinalIgnoreCase));
+
+            if (contact == null)
+            {
+                Console.WriteLine("Contact not found.");
+                return;
+            }
+
+            contacts.Remove(contact);
+            Console.WriteLine("Contact deleted successfully.");
+        }
+
+
     }
 }

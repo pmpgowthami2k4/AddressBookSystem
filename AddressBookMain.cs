@@ -60,6 +60,14 @@ namespace AddressBookSystem
             Console.WriteLine("\nUpdated Contact List:");
             addressBook.DisplayAllContacts();
 
+            Console.Write("\nEnter first name to delete: ");
+            string nameToDelete = Console.ReadLine();
+
+            addressBook.DeleteContact(nameToDelete);
+
+            Console.WriteLine("\nUpdated Contact List:");
+            addressBook.DisplayAllContacts();
+
         }
     }
 }
