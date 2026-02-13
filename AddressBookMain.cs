@@ -79,7 +79,9 @@ namespace AddressBookSystem
                 Console.WriteLine("4. Display All Contacts");
                 Console.WriteLine("5. View Contacts by City");
                 Console.WriteLine("6. View Contacts by State");
-                Console.WriteLine("7. Back");
+                Console.WriteLine("7. Count Contacts by City");
+                Console.WriteLine("8. Count Contacts by State");
+                Console.WriteLine("9. Back");
                 Console.Write("Enter your choice: ");
 
                 string choice = Console.ReadLine();
@@ -115,6 +117,16 @@ namespace AddressBookSystem
                         break;
 
                     case "7":
+                        Console.Write("Enter city: ");
+                        addressBook.CountByCity(Console.ReadLine());
+                        break;
+
+                    case "8":
+                        Console.Write("Enter state: ");
+                        addressBook.CountByState(Console.ReadLine());
+                        break;
+
+                    case "9":
                         return;
 
                     default:
@@ -123,6 +135,7 @@ namespace AddressBookSystem
                 }
             }
         }
+
 
         private static void AddContactFlow(AddressBook addressBook)
         {

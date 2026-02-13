@@ -138,6 +138,31 @@ namespace AddressBookSystem
             }
         }
 
+        public void CountByCity(string city)
+        {
+            if (cityDictionary.ContainsKey(city))
+            {
+                Console.WriteLine($"Number of contacts in {city}: {cityDictionary[city].Count}");
+            }
+            else
+            {
+                Console.WriteLine("No contacts found in this city.");
+            }
+        }
+
+        public void CountByState(string state)
+        {
+            if (stateDictionary.ContainsKey(state))
+            {
+                Console.WriteLine($"Number of contacts in {state}: {stateDictionary[state].Count}");
+            }
+            else
+            {
+                Console.WriteLine("No contacts found in this state.");
+            }
+        }
+
+
 
 
     }
