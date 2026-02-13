@@ -6,11 +6,17 @@ namespace AddressBookSystem
     internal class AddressBook
     {
         private List<Contact> contacts;
+        private Dictionary<string, List<Contact>> cityDictionary;
+        private Dictionary<string, List<Contact>> stateDictionary;
+
 
         public AddressBook()
         {
             contacts = new List<Contact>();
+            cityDictionary = new Dictionary<string, List<Contact>>(StringComparer.OrdinalIgnoreCase);
+            stateDictionary = new Dictionary<string, List<Contact>>(StringComparer.OrdinalIgnoreCase);
         }
+
 
         public void AddContact(Contact contact)
         {
@@ -21,8 +27,22 @@ namespace AddressBookSystem
             }
 
             contacts.Add(contact);
+
+            // Update City Dictionary
+            if (!cityDictionary.ContainsKey(contact.City))
+                cityDictionary[contact.City] = new List<Contact>();
+
+            cityDictionary[contact.City].Add(contact);
+
+            // Update State Dictionary
+            if (!stateDictionary.ContainsKey(contact.State))
+                stateDictionary[contact.State] = new List<Contact>();
+
+            stateDictionary[contact.State].Add(contact);
+
             Console.WriteLine("Contact added successfully.");
         }
+
 
 
         public void DisplayAllContacts()
@@ -91,6 +111,31 @@ namespace AddressBookSystem
         public List<Contact> GetContacts()
         {
             return contacts;
+        }
+        public void ViewByCity(string city)
+        {
+            if (cityDictionary.ContainsKey(city))
+            {
+                foreach (var contact in cityDictionary[city])
+                    Console.WriteLine(contact);
+            }
+            else
+            {
+                Console.WriteLine("No contacts found in this city.");
+            }
+        }
+
+        public void ViewByState(string state)
+        {
+            if (stateDictionary.ContainsKey(state))
+            {
+                foreach (var contact in stateDictionary[state])
+                    Console.WriteLine(contact);
+            }
+            else
+            {
+                Console.WriteLine("No contacts found in this state.");
+            }
         }
 
 
