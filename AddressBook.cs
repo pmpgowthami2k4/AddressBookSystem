@@ -88,6 +88,12 @@ namespace AddressBookSystem
             Console.WriteLine("Contact deleted successfully.");
         }
 
+        public List<Contact> GetContacts()
+        {
+            return contacts;
+        }
+
+
 
     }
 }

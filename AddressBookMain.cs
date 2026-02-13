@@ -15,7 +15,8 @@ namespace AddressBookSystem
                 Console.WriteLine("\n===== ADDRESS BOOK MENU =====");
                 Console.WriteLine("1. Create New Address Book");
                 Console.WriteLine("2. Select Address Book");
-                Console.WriteLine("3. Exit");
+                Console.WriteLine("3. Search by City or State");
+                Console.WriteLine("4. Exit");
                 Console.Write("Enter your choice: ");
 
                 string choice = Console.ReadLine();
@@ -52,6 +53,10 @@ namespace AddressBookSystem
                         break;
 
                     case "3":
+                        SearchContacts(addressBooks);
+                        break;
+
+                    case "4":
                         return;
 
                     default:
@@ -147,6 +152,37 @@ namespace AddressBookSystem
                 }
             }
         }
+
+        private static void SearchContacts(Dictionary<string, AddressBook> addressBooks)
+        {
+            Console.Write("Search by (city/state): ");
+            string type = Console.ReadLine().ToLower();
+
+            Console.Write("Enter value: ");
+            string value = Console.ReadLine();
+
+            bool found = false;
+
+            foreach (var book in addressBooks)
+            {
+                foreach (var contact in book.Value.GetContacts())
+                {
+                    if ((type == "city" && contact.City.Equals(value, StringComparison.OrdinalIgnoreCase)) ||
+                        (type == "state" && contact.State.Equals(value, StringComparison.OrdinalIgnoreCase)))
+                    {
+                        Console.WriteLine($"\nAddress Book: {book.Key}");
+                        Console.WriteLine(contact);
+                        found = true;
+                    }
+                }
+            }
+
+            if (!found)
+            {
+                Console.WriteLine("No matching contacts found.");
+            }
+        }
+
 
 
 
