@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+
 
 namespace AddressBookSystem
 {
@@ -171,6 +173,31 @@ namespace AddressBookSystem
                 Console.WriteLine(contact);
             }
         }
+
+        public void SortByCity()
+        {
+            var sorted = contacts.OrderBy(c => c.City);
+
+            foreach (var contact in sorted)
+                Console.WriteLine(contact);
+        }
+
+        public void SortByState()
+        {
+            var sorted = contacts.OrderBy(c => c.State);
+
+            foreach (var contact in sorted)
+                Console.WriteLine(contact);
+        }
+
+        public void SortByZip()
+        {
+            var sorted = contacts.OrderBy(c => c.Zip);
+
+            foreach (var contact in sorted)
+                Console.WriteLine(contact);
+        }
+
 
 
 

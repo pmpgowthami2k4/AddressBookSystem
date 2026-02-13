@@ -82,7 +82,10 @@ namespace AddressBookSystem
                 Console.WriteLine("7. Count Contacts by City");
                 Console.WriteLine("8. Count Contacts by State");
                 Console.WriteLine("9. Sort Contacts by Name");
-                Console.WriteLine("10. Back");
+                Console.WriteLine("10. Sort Contacts by City");
+                Console.WriteLine("11. Sort Contacts by State");
+                Console.WriteLine("12. Sort Contacts by Zip");
+                Console.WriteLine("13. Back");
                 Console.Write("Enter your choice: ");
 
                 string choice = Console.ReadLine();
@@ -132,6 +135,18 @@ namespace AddressBookSystem
                         break;
 
                     case "10":
+                        addressBook.SortByCity();
+                        break;
+
+                    case "11":
+                        addressBook.SortByState();
+                        break;
+
+                    case "12":
+                        addressBook.SortByZip();
+                        break;
+
+                    case "13":
                         return;
 
                     default:
@@ -140,6 +155,7 @@ namespace AddressBookSystem
                 }
             }
         }
+
 
 
 
