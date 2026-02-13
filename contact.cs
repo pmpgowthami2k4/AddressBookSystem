@@ -50,6 +50,25 @@ namespace AddressBookSystem
                    $"Phone: {PhoneNumber}\n" +
                    $"Email: {Email}";
         }
+        public override bool Equals(object obj)
+        {
+            if (obj == null || GetType() != obj.GetType())
+                return false;
+
+            Contact other = (Contact)obj;
+
+            return FirstName.Equals(other.FirstName, StringComparison.OrdinalIgnoreCase)
+                && LastName.Equals(other.LastName, StringComparison.OrdinalIgnoreCase);
+        }
+
+        public override int GetHashCode()
+        {
+            return HashCode.Combine(
+                FirstName.ToLower(),
+                LastName.ToLower()
+            );
+        }
+
     }
 }
 
