@@ -70,6 +70,8 @@ namespace AddressBookSystem
 
         private static void ManageAddressBook(AddressBook addressBook)
         {
+            IAddressBookStorage storage = new FileStorageService();
+
             while (true)
             {
                 Console.WriteLine("\n===== CONTACT MENU =====");
@@ -85,7 +87,9 @@ namespace AddressBookSystem
                 Console.WriteLine("10. Sort Contacts by City");
                 Console.WriteLine("11. Sort Contacts by State");
                 Console.WriteLine("12. Sort Contacts by Zip");
-                Console.WriteLine("13. Back");
+                Console.WriteLine("13. Save to File");
+                Console.WriteLine("14. Load from File");
+                Console.WriteLine("15. Back");
                 Console.Write("Enter your choice: ");
 
                 string choice = Console.ReadLine();
@@ -175,6 +179,26 @@ namespace AddressBookSystem
                         break;
 
                     case "13":
+                        Console.Write("Enter file path (e.g., contacts.txt): ");
+                        string savePath = Console.ReadLine();
+                        addressBook.SaveToFile(storage, savePath);
+                        break;
+
+                    case "14":
+                        Console.Write("Enter file path (e.g., contacts.txt): ");
+                        string loadPath = Console.ReadLine();
+                        try
+                        {
+                            addressBook.LoadFromFile(storage, loadPath);
+                        }
+                        catch (FileNotFoundException ex)
+                        {
+                            Console.WriteLine(ex.Message);
+                        }
+                        break;
+
+
+                    case "15":
                         return;
 
                     default:
@@ -183,7 +207,8 @@ namespace AddressBookSystem
                 }
             }
         }
- 
+
+
 
 
 

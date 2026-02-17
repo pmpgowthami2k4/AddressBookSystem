@@ -210,6 +210,37 @@ namespace AddressBookSystem
                 Console.WriteLine(contact);
         }
 
+        public void SaveToFile(IAddressBookStorage storage, string filePath)
+        {
+            storage.Save(filePath, contacts);
+            Console.WriteLine("Address Book saved successfully.");
+        }
+
+        public void LoadFromFile(IAddressBookStorage storage, string filePath)
+        {
+            contacts = storage.Load(filePath);
+
+            cityDictionary.Clear();
+            stateDictionary.Clear();
+
+            foreach (var contact in contacts)
+            {
+                if (!cityDictionary.ContainsKey(contact.City))
+                    cityDictionary[contact.City] = new List<Contact>();
+
+                cityDictionary[contact.City].Add(contact);
+
+                if (!stateDictionary.ContainsKey(contact.State))
+                    stateDictionary[contact.State] = new List<Contact>();
+
+                stateDictionary[contact.State].Add(contact);
+            }
+
+            Console.WriteLine("Address Book loaded successfully.");
+        }
+
+
+
 
 
 
