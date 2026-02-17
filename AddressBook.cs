@@ -166,6 +166,9 @@ namespace AddressBookSystem
 
         public void SortByName()
         {
+            if (contacts.Count == 0)
+                throw new AddressBookEmptyException("Cannot sort. Address Book is empty.");
+
             contacts.Sort();
 
             foreach (var contact in contacts)
@@ -176,6 +179,9 @@ namespace AddressBookSystem
 
         public void SortByCity()
         {
+            if (contacts.Count == 0)
+                throw new AddressBookEmptyException("Cannot sort. Address Book is empty.");
+
             var sorted = contacts.OrderBy(c => c.City);
 
             foreach (var contact in sorted)
@@ -184,6 +190,9 @@ namespace AddressBookSystem
 
         public void SortByState()
         {
+            if (contacts.Count == 0)
+                throw new AddressBookEmptyException("Cannot sort. Address Book is empty.");
+
             var sorted = contacts.OrderBy(c => c.State);
 
             foreach (var contact in sorted)
@@ -192,6 +201,9 @@ namespace AddressBookSystem
 
         public void SortByZip()
         {
+            if (contacts.Count == 0)
+                throw new AddressBookEmptyException("Cannot sort. Address Book is empty.");
+
             var sorted = contacts.OrderBy(c => c.Zip);
 
             foreach (var contact in sorted)

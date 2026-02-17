@@ -131,19 +131,47 @@ namespace AddressBookSystem
                         break;
 
                     case "9":
-                        addressBook.SortByName();
+                        try
+                        {
+                            addressBook.SortByName();
+                        }
+                        catch (AddressBookEmptyException ex)
+                        {
+                            Console.WriteLine(ex.Message);
+                        }
                         break;
 
                     case "10":
-                        addressBook.SortByCity();
+                        try
+                        {
+                            addressBook.SortByCity();
+                        }
+                        catch (AddressBookEmptyException ex)
+                        {
+                            Console.WriteLine(ex.Message);
+                        }
                         break;
 
                     case "11":
-                        addressBook.SortByState();
+                        try
+                        {
+                            addressBook.SortByState();
+                        }
+                        catch (AddressBookEmptyException ex)
+                        {
+                            Console.WriteLine(ex.Message);
+                        }
                         break;
 
                     case "12":
-                        addressBook.SortByZip();
+                        try
+                        {
+                            addressBook.SortByZip();
+                        }
+                        catch (AddressBookEmptyException ex)
+                        {
+                            Console.WriteLine(ex.Message);
+                        }
                         break;
 
                     case "13":
@@ -155,6 +183,7 @@ namespace AddressBookSystem
                 }
             }
         }
+
 
 
 
