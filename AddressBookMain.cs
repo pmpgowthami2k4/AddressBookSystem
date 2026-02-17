@@ -70,7 +70,8 @@ namespace AddressBookSystem
 
         private static void ManageAddressBook(AddressBook addressBook)
         {
-            IAddressBookStorage storage = new FileStorageService();
+            IAddressBookStorage fileStorage = new FileStorageService();
+            IAddressBookStorage csvStorage = new CsvStorageService();
 
             while (true)
             {
@@ -87,9 +88,11 @@ namespace AddressBookSystem
                 Console.WriteLine("10. Sort Contacts by City");
                 Console.WriteLine("11. Sort Contacts by State");
                 Console.WriteLine("12. Sort Contacts by Zip");
-                Console.WriteLine("13. Save to File");
-                Console.WriteLine("14. Load from File");
-                Console.WriteLine("15. Back");
+                Console.WriteLine("13. Save to TXT File");
+                Console.WriteLine("14. Load from TXT File");
+                Console.WriteLine("15. Save to CSV");
+                Console.WriteLine("16. Load from CSV");
+                Console.WriteLine("17. Back");
                 Console.Write("Enter your choice: ");
 
                 string choice = Console.ReadLine();
@@ -135,61 +138,39 @@ namespace AddressBookSystem
                         break;
 
                     case "9":
-                        try
-                        {
-                            addressBook.SortByName();
-                        }
+                        try { addressBook.SortByName(); }
                         catch (AddressBookEmptyException ex)
-                        {
-                            Console.WriteLine(ex.Message);
-                        }
+                        { Console.WriteLine(ex.Message); }
                         break;
 
                     case "10":
-                        try
-                        {
-                            addressBook.SortByCity();
-                        }
+                        try { addressBook.SortByCity(); }
                         catch (AddressBookEmptyException ex)
-                        {
-                            Console.WriteLine(ex.Message);
-                        }
+                        { Console.WriteLine(ex.Message); }
                         break;
 
                     case "11":
-                        try
-                        {
-                            addressBook.SortByState();
-                        }
+                        try { addressBook.SortByState(); }
                         catch (AddressBookEmptyException ex)
-                        {
-                            Console.WriteLine(ex.Message);
-                        }
+                        { Console.WriteLine(ex.Message); }
                         break;
 
                     case "12":
-                        try
-                        {
-                            addressBook.SortByZip();
-                        }
+                        try { addressBook.SortByZip(); }
                         catch (AddressBookEmptyException ex)
-                        {
-                            Console.WriteLine(ex.Message);
-                        }
+                        { Console.WriteLine(ex.Message); }
                         break;
 
                     case "13":
                         Console.Write("Enter file path (e.g., contacts.txt): ");
-                        string savePath = Console.ReadLine();
-                        addressBook.SaveToFile(storage, savePath);
+                        addressBook.SaveToFile(fileStorage, Console.ReadLine());
                         break;
 
                     case "14":
                         Console.Write("Enter file path (e.g., contacts.txt): ");
-                        string loadPath = Console.ReadLine();
                         try
                         {
-                            addressBook.LoadFromFile(storage, loadPath);
+                            addressBook.LoadFromFile(fileStorage, Console.ReadLine());
                         }
                         catch (FileNotFoundException ex)
                         {
@@ -197,8 +178,24 @@ namespace AddressBookSystem
                         }
                         break;
 
-
                     case "15":
+                        Console.Write("Enter file path (e.g., contacts.csv): ");
+                        addressBook.SaveToFile(csvStorage, Console.ReadLine());
+                        break;
+
+                    case "16":
+                        Console.Write("Enter file path (e.g., contacts.csv): ");
+                        try
+                        {
+                            addressBook.LoadFromFile(csvStorage, Console.ReadLine());
+                        }
+                        catch (FileNotFoundException ex)
+                        {
+                            Console.WriteLine(ex.Message);
+                        }
+                        break;
+
+                    case "17":
                         return;
 
                     default:
@@ -207,6 +204,7 @@ namespace AddressBookSystem
                 }
             }
         }
+
 
 
 
