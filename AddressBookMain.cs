@@ -72,6 +72,7 @@ namespace AddressBookSystem
         {
             IAddressBookStorage fileStorage = new FileStorageService();
             IAddressBookStorage csvStorage = new CsvStorageService();
+            IAddressBookStorage jsonStorage = new JsonStorageService();
 
             while (true)
             {
@@ -92,7 +93,9 @@ namespace AddressBookSystem
                 Console.WriteLine("14. Load from TXT File");
                 Console.WriteLine("15. Save to CSV");
                 Console.WriteLine("16. Load from CSV");
-                Console.WriteLine("17. Back");
+                Console.WriteLine("17. Save to JSON");
+                Console.WriteLine("18. Load from JSON");
+                Console.WriteLine("19. Back");
                 Console.Write("Enter your choice: ");
 
                 string choice = Console.ReadLine();
@@ -196,6 +199,23 @@ namespace AddressBookSystem
                         break;
 
                     case "17":
+                        Console.Write("Enter file path (e.g., contacts.json): ");
+                        addressBook.SaveToFile(jsonStorage, Console.ReadLine());
+                        break;
+
+                    case "18":
+                        Console.Write("Enter file path (e.g., contacts.json): ");
+                        try
+                        {
+                            addressBook.LoadFromFile(jsonStorage, Console.ReadLine());
+                        }
+                        catch (FileNotFoundException ex)
+                        {
+                            Console.WriteLine(ex.Message);
+                        }
+                        break;
+
+                    case "19":
                         return;
 
                     default:
@@ -204,6 +224,7 @@ namespace AddressBookSystem
                 }
             }
         }
+
 
 
 
