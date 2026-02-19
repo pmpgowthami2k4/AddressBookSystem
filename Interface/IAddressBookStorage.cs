@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
+using AddressBookSystem.Model;
 
-namespace AddressBookSystem
+namespace AddressBookSystem.Interface
 {
     internal interface IAddressBookStorage
     {

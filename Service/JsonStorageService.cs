@@ -2,8 +2,10 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Text.Json;
+using AddressBookSystem.Interface;
+using AddressBookSystem.Model;
 
-namespace AddressBookSystem
+namespace AddressBookSystem.Service
 {
     internal class JsonStorageService : IAddressBookStorage
     {

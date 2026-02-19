@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using AddressBookSystem.Interface;
+using AddressBookSystem.Model;
 
-namespace AddressBookSystem
+namespace AddressBookSystem.Service
 {
     internal class FileStorageService : IAddressBookStorage
     {
