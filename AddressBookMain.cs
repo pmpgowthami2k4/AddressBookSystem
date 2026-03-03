@@ -1,5 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using AddressBookSystem.Exceptions;
+using AddressBookSystem.Interface;
+using AddressBookSystem.Model;
+using AddressBookSystem.Service;
+using AddressBookSystem.Utility;
+
 
 namespace AddressBookSystem
 {
@@ -227,20 +233,31 @@ namespace AddressBookSystem
 
 
 
-
-
-
-
-
         private static void AddContactFlow(AddressBook addressBook)
         {
             Console.WriteLine("\nEnter Contact Details:");
 
-            Console.Write("First Name: ");
-            string firstName = Console.ReadLine();
+            string firstName;
+            do
+            {
+                Console.Write("First Name: ");
+                firstName = Console.ReadLine();
 
-            Console.Write("Last Name: ");
-            string lastName = Console.ReadLine();
+                if (!ValidationHelper.IsValidName(firstName))
+                    Console.WriteLine("Invalid First Name. Must start with capital letter and be at least 3 characters.");
+            }
+            while (!ValidationHelper.IsValidName(firstName));
+
+            string lastName;
+            do
+            {
+                Console.Write("Last Name: ");
+                lastName = Console.ReadLine();
+
+                if (!ValidationHelper.IsValidName(lastName))
+                    Console.WriteLine("Invalid Last Name. Must start with capital letter and be at least 3 characters.");
+            }
+            while (!ValidationHelper.IsValidName(lastName));
 
             Console.Write("Address: ");
             string address = Console.ReadLine();
@@ -251,14 +268,38 @@ namespace AddressBookSystem
             Console.Write("State: ");
             string state = Console.ReadLine();
 
-            Console.Write("Zip: ");
-            string zip = Console.ReadLine();
+            string zip;
+            do
+            {
+                Console.Write("Zip (6 digits): ");
+                zip = Console.ReadLine();
 
-            Console.Write("Phone Number: ");
-            string phone = Console.ReadLine();
+                if (!ValidationHelper.IsValidZip(zip))
+                    Console.WriteLine("Invalid Zip. Must be exactly 6 digits.");
+            }
+            while (!ValidationHelper.IsValidZip(zip));
 
-            Console.Write("Email: ");
-            string email = Console.ReadLine();
+            string phone;
+            do
+            {
+                Console.Write("Phone Number (10 digits starting with 6-9): ");
+                phone = Console.ReadLine();
+
+                if (!ValidationHelper.IsValidPhone(phone))
+                    Console.WriteLine("Invalid Phone Number. Must be 10 digits and start with 6-9.");
+            }
+            while (!ValidationHelper.IsValidPhone(phone));
+
+            string email;
+            do
+            {
+                Console.Write("Email: ");
+                email = Console.ReadLine();
+
+                if (!ValidationHelper.IsValidEmail(email))
+                    Console.WriteLine("Invalid Email format.");
+            }
+            while (!ValidationHelper.IsValidEmail(email));
 
             Contact contact = new Contact(
                 firstName,
@@ -273,6 +314,7 @@ namespace AddressBookSystem
 
             addressBook.AddContact(contact);
         }
+
 
         private static void SearchContacts(Dictionary<string, AddressBook> addressBooks)
         {

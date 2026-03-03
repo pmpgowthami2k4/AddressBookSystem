@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace AddressBookSystem
+namespace AddressBookSystem.Model
 {
 
     internal class Contact : IComparable<Contact>

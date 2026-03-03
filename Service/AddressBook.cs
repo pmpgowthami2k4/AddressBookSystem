@@ -1,10 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using AddressBookSystem.Interface;
 using AddressBookSystem.Model;
+using AddressBookSystem.Exceptions;
 
 
-namespace AddressBookSystem
+
+namespace AddressBookSystem.Service
 {
     internal class AddressBook
     {

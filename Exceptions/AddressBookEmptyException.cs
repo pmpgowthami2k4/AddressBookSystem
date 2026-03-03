@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace AddressBookSystem
+namespace AddressBookSystem.Exceptions
 {
     internal class AddressBookEmptyException : Exception
     {
